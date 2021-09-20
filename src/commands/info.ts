@@ -10,6 +10,6 @@ export default class Info extends Command {
   static args = [];
 
   async run() {
-    this.println('Info works 1');
+    this.println('Info works 2');
   }
 }
