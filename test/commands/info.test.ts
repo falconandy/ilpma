@@ -5,6 +5,7 @@ describe(`Test 'info'`, () => {
   const mocks: { [id: string]: jest.SpyInstance } = {};
 
   async function runInfoCommand() {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
     const infoCommand = require('../../src/commands/info');
     await infoCommand.default.run();
   }
@@ -23,8 +24,8 @@ describe(`Test 'info'`, () => {
     resetMocks(mocks);
   });
 
-    test(`should work`, async () => {
-      await runInfoCommand();
-      verifyInfo();
-    });
+  test(`should work`, async () => {
+    await runInfoCommand();
+    verifyInfo();
+  });
 });
