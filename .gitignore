@@ -1,0 +1,17 @@
+*-debug.log
+*-error.log
+/.nyc_output
+/coverage
+/dist
+/lib
+/tmp
+node_modules
+*.tsbuildinfo
+.env
+
+# IDE project files
+*.iml
+.idea
+.vs
+.vscode
+.npmrc

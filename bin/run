@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+// The next two lines weren't part of the original Oclif checkout but were added to support .env files for local testing and debugging of Ilpma
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+
+require('@oclif/command').run()
+.then(require('@oclif/command/flush'))
+.catch(require('@oclif/errors/handle'))

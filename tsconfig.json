@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "target": "es2017",
+    "composite": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    // Disabled because of antlr4ts (https://github.com/tunnelvisionlabs/antlr4ts/issues/396)
+    "strictPropertyInitialization": false
+    // We don't need this crutch (I think...)
+    // "esModuleInterop": true,
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
