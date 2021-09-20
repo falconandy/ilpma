@@ -10,7 +10,6 @@ module.exports =  {
     // https://www.npmjs.com/package/@typescript-eslint/parser#parseroptionsproject
     project: [
       './tsconfig.json',
-      './buildtools/tsconfig.json',
       './test/tsconfig.json',
       ]
   },
