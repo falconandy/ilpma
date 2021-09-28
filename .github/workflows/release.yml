@@ -75,5 +75,5 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: |
-          npm version $ {{ env.PACKAGE_VERSION }}
+          npm version ${{ env.PACKAGE_VERSION }}
           npm publish --tag ${{ env.DIST_TAG }}
