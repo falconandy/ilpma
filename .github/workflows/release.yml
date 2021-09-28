@@ -79,4 +79,5 @@ jobs:
 
       - name: Push Git changes
         run: |
+          git push
           git push --tags
