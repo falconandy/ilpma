@@ -77,3 +77,7 @@ jobs:
         run: |
           npm version ${{ env.PACKAGE_VERSION }}
           npm publish --tag ${{ env.DIST_TAG }}
+
+      - name: Push Git changes
+        run: |
+          git push
