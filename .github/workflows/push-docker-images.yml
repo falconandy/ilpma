@@ -1,0 +1,64 @@
+name: Push Docker images
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Docker meta @falconandy/ilpma
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: @falconandy/ilpma
+
+      - name: Build and push @falconandy/ilpma
+        uses: docker/build-push-action@v2
+        with:
+          context: ./docker/ilpma
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Docker meta @falconandy/ilpma-dotnet
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: @falconandy/ilpma-dotnet
+
+      - name: Build and push @falconandy/ilpma-dotnet
+        uses: docker/build-push-action@v2
+        with:
+          context: ./docker/dotnet
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+#      - name: Build and push @falconandy/ilpma-swift
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: ./docker/swift
+#          push: true
+#          tags: ${{ steps.meta.outputs.tags }}
+#          labels: ${{ steps.meta.outputs.labels }}
+#
+#      - name: Build and push @falconandy/ilpma-ruby
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: ./docker/ruby
+#          push: true
+#          tags: ${{ steps.meta.outputs.tags }}
+#          labels: ${{ steps.meta.outputs.labels }}
