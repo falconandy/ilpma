@@ -57,10 +57,10 @@ jobs:
 #      - name: Test
 #        run: yarn test-ci
 
-      - name: Configure Git User
-        run: |
-          git config --global user.name ilpma-sdk-bot
-          git config --global user.email support@ilpma.com
+#      - name: Configure Git User
+#        run: |
+#          git config --global user.name ilpma-sdk-bot
+#          git config --global user.email support@ilpma.com
 
       - name: Configure NPM User
         run: |
