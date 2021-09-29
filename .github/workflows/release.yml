@@ -55,15 +55,12 @@ jobs:
         run: yarn lint
 
 #      - name: Test
-#        run: yarn test
-#        env:
-#          CI: true
+#        run: yarn test-ci
 
       - name: Configure Git User
         run: |
           git config --global user.name ilpma-sdk-bot
           git config --global user.email support@ilpma.com
-#          git remote set-url origin https://x-access-token:${{ secrets.GH_PUBLISH_TOKEN }}@github.com/${{ github.repository }}
 
       - name: Configure NPM User
         run: |
@@ -74,7 +71,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: |
-          npm version ${{ env.PACKAGE_VERSION }} -m "Publish v%s"
+          npm version ${{ env.PACKAGE_VERSION }} -m "v%s"
           npm publish --tag ${{ env.DIST_TAG }}
 
       - name: Push Git changes
