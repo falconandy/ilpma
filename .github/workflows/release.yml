@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       packageVersion:
-        description: "The version to publish (e.g. 1.2.3, prerelease, patch, minor, major)"
+        description: "The version to publish (e.g. prerelease, patch, minor, major, 1.2.3)"
         required: true
       distTag:
         description: "The dist-tag to publish (e.g. latest, beta)"
@@ -36,8 +36,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ssh-key: ${{ secrets.ILPMA_DEPLOY_KEY }}
+#        with:
+#          ssh-key: ${{ secrets.ILPMA_DEPLOY_KEY }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
