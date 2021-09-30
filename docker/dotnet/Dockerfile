@@ -18,10 +18,9 @@ ENV DOTNET_CLI_TELEMETRY_OPTOUT=true
 RUN touch "$HOME"/.dotnet/"$(dotnet --version)".dotnetFirstUseSentinel
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt update && apt install -y nodejs
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN apt update -qq && apt install -y -qq nodejs
+RUN curl -o- -sL https://yarnpkg.com/install.sh | bash
 
-RUN npm i -g @falconandy/ilpma@latest
+RUN npm i -s -g @falconandy/ilpma@latest
 
-RUN ilpma --version
-RUN dotnet --version
+RUN ilpma --version && dotnet --version
