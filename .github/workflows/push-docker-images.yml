@@ -48,7 +48,7 @@ jobs:
       - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
         uses: docker/build-push-action@v2
         with:
-          context: ./docker/dotnet
+          context: ./docker/ilpma-dotnet
           push: true
           build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-dotnet.outputs.tags }}
@@ -63,7 +63,7 @@ jobs:
       - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
         uses: docker/build-push-action@v2
         with:
-          context: ./docker/ruby
+          context: ./docker/ilpma-ruby
           push: true
           build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-ruby.outputs.tags }}
@@ -78,7 +78,7 @@ jobs:
       - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
         uses: docker/build-push-action@v2
         with:
-          context: ./docker/swift
+          context: ./docker/ilpma-swift
           push: true
           build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-swift.outputs.tags }}
