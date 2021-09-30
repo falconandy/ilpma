@@ -19,56 +19,56 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Docker meta @falconandy/ilpma
+      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma
         id: meta-ilpma
         uses: docker/metadata-action@v3
         with:
           tags: type=semver,pattern={{version}}
-          images: falconandy/ilpma
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma
 
-      - name: Build and push falconandy/ilpma
+      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma
         uses: docker/build-push-action@v2
         with:
           context: ./docker/ilpma
           push: true
           tags: ${{ steps.meta-ilpma.outputs.tags }}
 
-      - name: Docker meta falconandy/ilpma-dotnet
+      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
         id: meta-dotnet
         uses: docker/metadata-action@v3
         with:
           tags: type=semver,pattern={{version}}
-          images: falconandy/ilpma-dotnet
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
 
-      - name: Build and push falconandy/ilpma-dotnet
+      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
         uses: docker/build-push-action@v2
         with:
           context: ./docker/dotnet
           push: true
           tags: ${{ steps.meta-dotnet.outputs.tags }}
 
-      - name: Docker meta falconandy/ilpma-ruby
+      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
         id: meta-ruby
         uses: docker/metadata-action@v3
         with:
           tags: type=semver,pattern={{version}}
-          images: falconandy/ilpma-ruby
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
 
-      - name: Build and push falconandy/ilpma-ruby
+      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
         uses: docker/build-push-action@v2
         with:
           context: ./docker/ruby
           push: true
           tags: ${{ steps.meta-ruby.outputs.tags }}
 
-      - name: Docker meta falconandy/ilpma-swift
+      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
         id: meta-swift
         uses: docker/metadata-action@v3
         with:
           tags: type=semver,pattern={{version}}
-          images: falconandy/ilpma-swift
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
 
-      - name: Build and push falconandy/ilpma-swift
+      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
         uses: docker/build-push-action@v2
         with:
           context: ./docker/swift
