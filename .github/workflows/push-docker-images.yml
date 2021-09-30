@@ -23,9 +23,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: @falconandy/ilpma
+          images: falconandy/ilpma
 
-      - name: Build and push @falconandy/ilpma
+      - name: Build and push falconandy/ilpma
         uses: docker/build-push-action@v2
         with:
           context: ./docker/ilpma
@@ -33,13 +33,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Docker meta @falconandy/ilpma-dotnet
+      - name: Docker meta falconandy/ilpma-dotnet
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: @falconandy/ilpma-dotnet
+          images: falconandy/ilpma-dotnet
 
-      - name: Build and push @falconandy/ilpma-dotnet
+      - name: Build and push falconandy/ilpma-dotnet
         uses: docker/build-push-action@v2
         with:
           context: ./docker/dotnet
@@ -47,7 +47,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-#      - name: Build and push @falconandy/ilpma-swift
+#      - name: Build and push falconandy/ilpma-swift
 #        uses: docker/build-push-action@v2
 #        with:
 #          context: ./docker/swift
@@ -55,7 +55,7 @@ jobs:
 #          tags: ${{ steps.meta.outputs.tags }}
 #          labels: ${{ steps.meta.outputs.labels }}
 #
-#      - name: Build and push @falconandy/ilpma-ruby
+#      - name: Build and push falconandy/ilpma-ruby
 #        uses: docker/build-push-action@v2
 #        with:
 #          context: ./docker/ruby
