@@ -19,6 +19,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Get BUILD_DATE
+        run: |
+          echo "BUILD_DATE=$( date -u +'%Y-%m-%dT%H:%M:%SZ' )" >> $GITHUB_ENV
+
       - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma
         id: meta-ilpma
         uses: docker/metadata-action@v3
@@ -31,6 +35,7 @@ jobs:
         with:
           context: ./docker/ilpma
           push: true
+          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-ilpma.outputs.tags }}
 
       - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
@@ -45,6 +50,7 @@ jobs:
         with:
           context: ./docker/dotnet
           push: true
+          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-dotnet.outputs.tags }}
 
       - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
@@ -59,6 +65,7 @@ jobs:
         with:
           context: ./docker/ruby
           push: true
+          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-ruby.outputs.tags }}
 
       - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
@@ -73,4 +80,5 @@ jobs:
         with:
           context: ./docker/swift
           push: true
+          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-swift.outputs.tags }}

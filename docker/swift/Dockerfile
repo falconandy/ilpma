@@ -1,8 +1,11 @@
 FROM swift:5.5.0-focal
 
+ARG BUILD_DATE
+
 LABEL maintainer="support@ilpmatude.com"
 LABEL org.label-schema.description="Ilpma CLI + Swift"
 LABEL org.label-schema.url="https://ilpmatude.com"
+LABEL org.label-schema.build-date=$BUILD_DATE
 
 RUN apt update -qq && apt install -y -qq curl
 
