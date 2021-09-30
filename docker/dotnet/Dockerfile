@@ -1,11 +1,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:3.1-buster
 
-ARG BUILD_DATE
-
 LABEL maintainer="support@ilpmatude.com"
 LABEL org.label-schema.description="Ilpma CLI + .Net Core"
 LABEL org.label-schema.url="https://ilpmatude.com"
-LABEL org.label-schema.build-date=$BUILD_DATE
 
 # NOTICE - None of these work to disable the first run Welcome message. See workaround below.
 ENV DOTNET_NOLOGO=true

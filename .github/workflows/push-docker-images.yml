@@ -23,6 +23,7 @@ jobs:
         id: meta-ilpma
         uses: docker/metadata-action@v3
         with:
+          tags: type=semver,pattern={{version}}
           images: falconandy/ilpma
 
       - name: Build and push falconandy/ilpma
@@ -30,13 +31,13 @@ jobs:
         with:
           context: ./docker/ilpma
           push: true
-          build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           tags: ${{ steps.meta-ilpma.outputs.tags }}
 
       - name: Docker meta falconandy/ilpma-dotnet
         id: meta-dotnet
         uses: docker/metadata-action@v3
         with:
+          tags: type=semver,pattern={{version}}
           images: falconandy/ilpma-dotnet
 
       - name: Build and push falconandy/ilpma-dotnet
@@ -44,13 +45,13 @@ jobs:
         with:
           context: ./docker/dotnet
           push: true
-          build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           tags: ${{ steps.meta-dotnet.outputs.tags }}
 
       - name: Docker meta falconandy/ilpma-ruby
         id: meta-ruby
         uses: docker/metadata-action@v3
         with:
+          tags: type=semver,pattern={{version}}
           images: falconandy/ilpma-ruby
 
       - name: Build and push falconandy/ilpma-ruby
@@ -58,13 +59,13 @@ jobs:
         with:
           context: ./docker/ruby
           push: true
-          build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           tags: ${{ steps.meta-ruby.outputs.tags }}
 
       - name: Docker meta falconandy/ilpma-swift
         id: meta-swift
         uses: docker/metadata-action@v3
         with:
+          tags: type=semver,pattern={{version}}
           images: falconandy/ilpma-swift
 
       - name: Build and push falconandy/ilpma-swift
@@ -72,5 +73,4 @@ jobs:
         with:
           context: ./docker/swift
           push: true
-          build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           tags: ${{ steps.meta-swift.outputs.tags }}

@@ -1,11 +1,8 @@
 FROM ruby:2.7.4-slim-buster
 
-ARG BUILD_DATE
-
 LABEL maintainer="support@ilpmatude.com"
 LABEL org.label-schema.description="Ilpma CLI + Ruby"
 LABEL org.label-schema.url="https://ilpmatude.com"
-LABEL org.label-schema.build-date=$BUILD_DATE
 
 RUN apt update -qq && apt install -y -qq curl
 
