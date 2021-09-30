@@ -1,4 +1,4 @@
-name: Push Docker images
+name: Build/Push Docker images
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Docker meta @falconandy/ilpma
-        id: meta
+        id: meta-ilpma
         uses: docker/metadata-action@v3
         with:
           images: falconandy/ilpma
@@ -30,11 +30,11 @@ jobs:
         with:
           context: ./docker/ilpma
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-ilpma.outputs.tags }}
+          labels: ${{ steps.meta-ilpma.outputs.labels }}
 
       - name: Docker meta falconandy/ilpma-dotnet
-        id: meta
+        id: meta-dotnet
         uses: docker/metadata-action@v3
         with:
           images: falconandy/ilpma-dotnet
@@ -44,8 +44,8 @@ jobs:
         with:
           context: ./docker/dotnet
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-dotnet.outputs.tags }}
+          labels: ${{ steps.meta-dotnet.outputs.labels }}
 
 #      - name: Build and push falconandy/ilpma-swift
 #        uses: docker/build-push-action@v2
