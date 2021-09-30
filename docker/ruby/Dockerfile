@@ -13,6 +13,6 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt update -qq && apt install -y -qq nodejs
 RUN curl -o- -sL https://yarnpkg.com/install.sh | bash
 
-RUN npm i -g @falconandy/ilpma@latest
+RUN npm i -s -g @falconandy/ilpma@latest
 
 RUN ilpma --version && ruby --version

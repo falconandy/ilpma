@@ -47,20 +47,6 @@ jobs:
           build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           tags: ${{ steps.meta-dotnet.outputs.tags }}
 
-      - name: Docker meta falconandy/ilpma-swift
-        id: meta-swift
-        uses: docker/metadata-action@v3
-        with:
-          images: falconandy/ilpma-swift
-
-      - name: Build and push falconandy/ilpma-swift
-        uses: docker/build-push-action@v2
-        with:
-          context: ./docker/swift
-          push: true
-          build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
-          tags: ${{ steps.meta-swift.outputs.tags }}
-
       - name: Docker meta falconandy/ilpma-ruby
         id: meta-ruby
         uses: docker/metadata-action@v3
@@ -74,3 +60,17 @@ jobs:
           push: true
           build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           tags: ${{ steps.meta-ruby.outputs.tags }}
+
+      - name: Docker meta falconandy/ilpma-swift
+        id: meta-swift
+        uses: docker/metadata-action@v3
+        with:
+          images: falconandy/ilpma-swift
+
+      - name: Build and push falconandy/ilpma-swift
+        uses: docker/build-push-action@v2
+        with:
+          context: ./docker/swift
+          push: true
+          build-args: BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          tags: ${{ steps.meta-swift.outputs.tags }}
