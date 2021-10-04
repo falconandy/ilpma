@@ -3,7 +3,7 @@
 exports[`Test 'info' should work: writeLine 1`] = `
 Array [
   Array [
-    "Info works 2",
+    "Info works 3",
   ],
 ]
 `;
