@@ -42,9 +42,18 @@ jobs:
         with:
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Publish GitHub packages
+      - name: Publish GitHub package
         run: |
           yarn publish --prerelease --no-git-tag-version --tag latest
-          yarn tag add @falconandy/ilpma:latest master
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get published version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@1.1.0
+
+      - name: Add tag 'master' to the GitHub package
+        run: |
+          yarn tag add @falconandy/ilpma:${{ steps.package-version.outputs.current-version}} master
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
