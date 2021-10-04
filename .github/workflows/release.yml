@@ -71,7 +71,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: |
-          npm version ${{ env.PACKAGE_VERSION }} -m "v%s"
+          npm version ${{ env.PACKAGE_VERSION }} --tag-version-prefix "" -m "v%s"
           npm publish --tag ${{ env.DIST_TAG }}
 
       - name: Push Git changes
