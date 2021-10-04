@@ -34,9 +34,6 @@ jobs:
       - name: Test
         run: yarn test-ci
 
-#      - name: Checkout branch (to prevent "Detached git HEAD, please checkout a branch to choose versions.")
-#        run: git checkout -b ${{ steps.extract_branch.outputs.branch }}
-
       - name: Set registry url
         uses: actions/setup-node@v2
         with:
