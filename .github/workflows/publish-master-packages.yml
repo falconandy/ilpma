@@ -37,14 +37,14 @@ jobs:
 #      - name: Checkout branch (to prevent "Detached git HEAD, please checkout a branch to choose versions.")
 #        run: git checkout -b ${{ steps.extract_branch.outputs.branch }}
 
-#      - name: Set registry url
-#        uses: actions/setup-node@v2
-#        with:
-#          registry-url: 'https://npm.pkg.github.com'
+      - name: Set registry url
+        uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://npm.pkg.github.com'
 
       - name: Publish GitHub package
         run: |
-          yarn publish --registry https://npm.pkg.github.com --prerelease --no-git-tag-version --tag latest --preid ${GITHUB_SHA:0:8}
+          yarn publish --prerelease --no-git-tag-version --tag latest --preid ${GITHUB_SHA:0:8}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -52,8 +52,13 @@ jobs:
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
 
+      - name: Set registry url
+        uses: actions/setup-node@v2
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
       - name: Add tag 'master' to the GitHub package
         run: |
-          yarn tag --registry https://npm.pkg.github.com add ilpma@${{ steps.package-version.outputs.current-version}} master
+          yarn tag add ilpma@${{ steps.package-version.outputs.current-version}} master
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
