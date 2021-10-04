@@ -10,6 +10,10 @@ on:
         description: "The dist-tag to publish (e.g. latest, beta)"
         required: true
         default: "latest"
+      dryRun:
+        description: "Do a dry run to preview instead of a real release (true/false)"
+        required: true
+        default: "true"
 
 jobs:
   authorize:
@@ -30,11 +34,12 @@ jobs:
     env:
       PACKAGE_VERSION: ${{ github.event.inputs.packageVersion }}
       DIST_TAG: ${{ github.event.inputs.distTag }}
+      DRY_RUN: ${{ github.event.inputs.dryRun }}
     strategy:
       matrix:
         node-version: ["12.x"]
     steps:
-      - name: Checkout
+      - name: Checkout for ${{ env.DRY_RUN != 'false' && 'dry run' || 'PRODUCTION RELEASE' }}
         uses: actions/checkout@v2
         with:
           ssh-key: ${{ secrets.ILPMA_DEPLOY_KEY }}
@@ -67,7 +72,16 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" > ~/.npmrc
           npm whoami
 
+      - name: Release (Dry Run)
+        if: ${{ env.DRY_RUN == 'true' }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: |
+          npm version ${{ env.PACKAGE_VERSION }} --tag-version-prefix "" -m "v%s"
+          npm publish --tag ${{ env.DIST_TAG }} --dry-run
+
       - name: Release (NPM)
+        if: ${{ env.DRY_RUN == 'false' }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: |
@@ -75,6 +89,7 @@ jobs:
           npm publish --tag ${{ env.DIST_TAG }}
 
       - name: Push Git changes
+        if: ${{ env.DRY_RUN == 'false' }}
         run: |
           git push
           git push --tags
