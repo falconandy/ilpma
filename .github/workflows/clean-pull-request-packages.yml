@@ -20,7 +20,7 @@ jobs:
       id: extract_task
 
     - name: Delete PR packages
-      uses: smartsquaregmbh/delete-old-packages@v0.3.1
+      uses: smartsquaregmbh/delete-old-packages@v0.3.2
       with:
         version-pattern: "^\\d+\\.\\d+\\.\\d+-${{ steps.extract_task.outputs.task }}-[0-9a-f]+\\.\\d+$"
         keep: 0
