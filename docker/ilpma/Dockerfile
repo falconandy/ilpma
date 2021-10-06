@@ -1,4 +1,4 @@
-FROM node:12.22.6-buster
+FROM node:12.22.6-bullseye-slim
 
 ARG BUILD_DATE
 

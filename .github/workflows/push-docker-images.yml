@@ -3,7 +3,7 @@ name: Build/Push Docker images
 on:
   push:
     tags:
-      - 'DISABLED-[0-9]+.[0-9]+.[0-9]+*'
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   docker:
@@ -37,47 +37,47 @@ jobs:
           build-args: BUILD_DATE=${{ env.BUILD_DATE }}
           tags: ${{ steps.meta-ilpma.outputs.tags }}
 
-      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
-        id: meta-dotnet
-        uses: docker/metadata-action@v3
-        with:
-          tags: type=semver,pattern={{version}}
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
-
-      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
-        uses: docker/build-push-action@v2
-        with:
-          context: ./docker/ilpma-dotnet
-          push: true
-          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
-          tags: ${{ steps.meta-dotnet.outputs.tags }}
-
-      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
-        id: meta-ruby
-        uses: docker/metadata-action@v3
-        with:
-          tags: type=semver,pattern={{version}}
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
-
-      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
-        uses: docker/build-push-action@v2
-        with:
-          context: ./docker/ilpma-ruby
-          push: true
-          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
-          tags: ${{ steps.meta-ruby.outputs.tags }}
-
-      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
-        id: meta-swift
-        uses: docker/metadata-action@v3
-        with:
-          tags: type=semver,pattern={{version}}
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
-
-      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
-        uses: docker/build-push-action@v2
-        with:
-          context: ./docker/ilpma-swift
-          push: true
-          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
-          tags: ${{ steps.meta-swift.outputs.tags }}
+#      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
+#        id: meta-dotnet
+#        uses: docker/metadata-action@v3
+#        with:
+#          tags: type=semver,pattern={{version}}
+#          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
+#
+#      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-dotnet
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: ./docker/ilpma-dotnet
+#          push: true
+#          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
+#          tags: ${{ steps.meta-dotnet.outputs.tags }}
+#
+#      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
+#        id: meta-ruby
+#        uses: docker/metadata-action@v3
+#        with:
+#          tags: type=semver,pattern={{version}}
+#          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
+#
+#      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-ruby
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: ./docker/ilpma-ruby
+#          push: true
+#          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
+#          tags: ${{ steps.meta-ruby.outputs.tags }}
+#
+#      - name: Docker meta ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
+#        id: meta-swift
+#        uses: docker/metadata-action@v3
+#        with:
+#          tags: type=semver,pattern={{version}}
+#          images: ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
+#
+#      - name: Build and push ${{ secrets.DOCKERHUB_USERNAME }}/ilpma-swift
+#        uses: docker/build-push-action@v2
+#        with:
+#          context: ./docker/ilpma-swift
+#          push: true
+#          build-args: BUILD_DATE=${{ env.BUILD_DATE }}
+#          tags: ${{ steps.meta-swift.outputs.tags }}

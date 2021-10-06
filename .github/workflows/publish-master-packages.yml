@@ -41,7 +41,7 @@ jobs:
 
       - name: Publish the GitHub package
         run: |
-          npm version prerelease --no-git-tag-version --tag-version-prefix "" --preid master-${GITHUB_SHA:0:8}
+          npm version prerelease --no-git-tag-version --preid master-${GITHUB_SHA:0:8}
           npm publish --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
