@@ -58,7 +58,7 @@ jobs:
 
       - name: Create artifactes
         run: |
-          oclif-dev pack
+          yarn oclif-dev pack
 
       - name: Publish pre-release artifactes
         uses: "marvinpinto/action-automatic-releases@latest"
