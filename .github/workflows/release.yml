@@ -37,7 +37,7 @@ jobs:
       DRY_RUN: ${{ github.event.inputs.dryRun }}
     strategy:
       matrix:
-        node-version: ["12.x"]
+        node-version: [ 12.x ]
     steps:
       - name: Checkout for ${{ env.DRY_RUN != 'false' && 'dry run' || 'PRODUCTION RELEASE' }}
         uses: actions/checkout@v2
@@ -59,8 +59,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-#      - name: Test
-#        run: yarn test-ci
+      - name: Test
+        run: yarn test-ci
 
       - name: Configure Git User
         run: |
