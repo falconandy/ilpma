@@ -56,6 +56,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create artifactes
+        run: |
+          oclif-dev pack
+
       - name: Publish pre-release artifactes
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
