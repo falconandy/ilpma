@@ -1,7 +1,7 @@
 {
   "name": "@falconandy/ilpma",
   "description": "Ilpma CLI",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "author": "falconandy",
   "bin": {
     "ilpma": "./bin/run"
