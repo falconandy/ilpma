@@ -62,7 +62,19 @@
       "@oclif/plugin-help",
       "@oclif/plugin-warn-if-update-available",
       "@oclif/plugin-autocomplete"
-    ]
+    ],
+    "update": {
+      "s3": {
+        "bucket": "ilpma-assets-prod"
+      },
+      "node": {
+        "version": "12.16.3",
+        "targets": [
+          "darwin-x64",
+          "linux-x64"
+        ]
+      }
+    }
   },
   "scripts": {
     "clean": "rimraf tsconfig.tsbuildinfo \"lib/*\" \"dist/*\"",
