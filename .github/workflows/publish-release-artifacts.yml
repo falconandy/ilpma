@@ -1,4 +1,4 @@
-name: Release
+name: Publish release artifacts
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
       matrix:
         node-version: [ 12.x ]
     steps:
-      - name: Checkout for ${{ env.DRY_RUN != 'false' && 'dry run' || 'PRODUCTION RELEASE' }}
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           ssh-key: ${{ secrets.ILPMA_DEPLOY_KEY }}
@@ -26,15 +26,11 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
 
-      - name: Build
-        run: yarn build
-
       - name: Create artifactes
         run: |
           yarn oclif-dev pack
 
-      - name: Publish release artifactes
-        if: ${{ env.DRY_RUN == 'false' }}
+      - name: Publish artifactes
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
