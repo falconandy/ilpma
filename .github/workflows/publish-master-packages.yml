@@ -70,6 +70,7 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
           name: "Development Build"
+          tag_name: "latest"
           files: |
             dist/**/*.tar.gz
 
