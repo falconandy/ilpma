@@ -65,12 +65,11 @@ jobs:
           yarn oclif-dev pack
 
       - name: Publish pre-release artifactes
-        uses: "marvinpinto/action-automatic-releases@latest"
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-          title: "Development Build"
+          name: "Development Build"
           files: |
             dist/**/*.tar.gz
 
