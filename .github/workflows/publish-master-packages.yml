@@ -41,7 +41,7 @@ jobs:
 
       - name: Get current timestamp
         run: |
-          echo "CURRENT_TIMESTAMP=$( date -u +'%Y-%m-%dT%H:%M:%SZ' )" >> $GITHUB_ENV
+          echo "CURRENT_TIMESTAMP=$( date -u +'%Y%m%d%H%M%S' )" >> $GITHUB_ENV
 
       - name: Publish the GitHub package
         run: |

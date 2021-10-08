@@ -51,7 +51,7 @@ jobs:
 
       - name: Get current timestamp
         run: |
-          echo "CURRENT_TIMESTAMP=$( date -u +'%Y-%m-%dT%H:%M:%SZ' )" >> $GITHUB_ENV
+          echo "CURRENT_TIMESTAMP=$( date -u +'%Y%m%d%H%M%S' )" >> $GITHUB_ENV
 
       - name: Publish GitHub packages
         run: yarn publish --prerelease --no-git-tag-version --tag ${{ steps.extract_task.outputs.task }} --preid ${{ steps.extract_task.outputs.task }}-${{ env.CURRENT_TIMESTAMP }}
