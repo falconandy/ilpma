@@ -107,6 +107,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ steps.package-version.outputs.current-version}}
           prerelease: false
-          title: ${{ steps.package-version.outputs.current-version}}
+          title: v${{ steps.package-version.outputs.current-version}}
           files: |
             dist/**/*.tar.gz
