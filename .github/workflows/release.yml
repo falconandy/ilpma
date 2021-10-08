@@ -91,7 +91,8 @@ jobs:
       - name: Push Git changes
         if: ${{ env.DRY_RUN == 'false' }}
         run: |
-          git push --follow-tags
+          git push
+          git push --tags
 
       - name: Get published version
         id: package-version
@@ -102,11 +103,12 @@ jobs:
           yarn oclif-dev pack
 
       - name: Publish release artifactes
-        uses: softprops/action-gh-release@v1
+        if: ${{ env.DRY_RUN == 'false' }}
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-          name: v${{ steps.package-version.outputs.current-version }}
-          tag_name: v${{ steps.package-version.outputs.current-version }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          title: v${{ steps.package-version.outputs.current-version }}
+          automatic_release_tag: v${{ steps.package-version.outputs.current-version }}
           prerelease: false
           files: |
             dist/**/*.tar.gz
