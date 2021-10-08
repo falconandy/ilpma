@@ -1,7 +1,7 @@
 {
   "name": "@falconandy/ilpma",
   "description": "Ilpma CLI",
-  "version": "0.1.20",
+  "version": "0.1.18",
   "author": "falconandy",
   "bin": {
     "ilpma": "./bin/run"
@@ -62,7 +62,13 @@
       "@oclif/plugin-help",
       "@oclif/plugin-warn-if-update-available",
       "@oclif/plugin-autocomplete"
-    ]
+    ],
+    "update": {
+      "node": {
+        "version": "12.16.3",
+        "targets": []
+      }
+    }
   },
   "scripts": {
     "clean": "rimraf tsconfig.tsbuildinfo \"lib/*\" \"dist/*\"",
