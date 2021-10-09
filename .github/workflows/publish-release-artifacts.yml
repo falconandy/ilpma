@@ -45,7 +45,7 @@ jobs:
       - name: Checkout homebrew-ilpma
         uses: actions/checkout@v2
         with:
-          repository: falconandi/homebrew-ilpma
+          repository: falconandy/homebrew-ilpma
           path: homebrew-ilpma
           ssh-key: ${{ secrets.HOMEBREW_ILPMA_DEPLOY_KEY }}
 
