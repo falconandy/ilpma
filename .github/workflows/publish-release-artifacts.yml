@@ -58,7 +58,7 @@ jobs:
           cd ./homebrew-ilpma
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit -m "v${{ steps.package-version.outputs.current-version }}"
+          git commit -a -m "v${{ steps.package-version.outputs.current-version }}"
           git tag "v${{ steps.package-version.outputs.current-version }}"
           git push
           git push --tags
