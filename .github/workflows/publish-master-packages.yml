@@ -56,7 +56,7 @@ jobs:
 
       - name: Add tag 'master' to the GitHub package
         run: |
-          npm dist-tag add @falconandy/ilpma@${{ steps.package-version.outputs.current-version}} master
+          npm dist-tag add @falconandy/ilpma@${{ steps.package-version.outputs.current-version }} master
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

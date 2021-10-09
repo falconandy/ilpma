@@ -37,3 +37,23 @@ jobs:
           prerelease: false
           files: |
             dist/**/*.tar.gz
+
+      - name: Get version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+
+      - name: Checkout homebrew-ilpma
+        uses: actions/checkout@v2
+        with:
+          repository: falconandi/homebrew-ilpma
+          path: homebrew-ilpma
+          ssh-key: ${{ secrets.HOMEBREW_ILPMA_DEPLOY_KEY }}
+
+      - name: Update Brew formula
+        run: |
+          npx ts-node ./buildtools/updateBrewFormula.ts --dist ./dist --version ${{ steps.package-version.outputs.current-version }} --formula ./homebrew-ilpma/Formula/ilpma.rb
+          cd ./homebrew-ilpma
+          git commit -m "v${{ steps.package-version.outputs.current-version }}"
+          git tag "v${{ steps.package-version.outputs.current-version }}"
+          git push
+          git push --tags
