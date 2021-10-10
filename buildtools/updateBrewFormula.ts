@@ -27,9 +27,9 @@ glob(distDir + `/**/ilpma-v${version}.tar.gz`, (_, files) => {
 
   const formulaContent = fs.readFileSync(formulaPath, 'utf-8');
   const updatedFormulaContent = formulaContent
-    .replace(/url "\S+"/, `url "${url}"`)
-    .replace(/version "\S+"/, `version "${version}"`)
-    .replace(/sha256 "\S+"/, `sha256 "${sha256}"`);
+    .replace(/url "[^"]*"/, `url "${url}"`)
+    .replace(/version "[^"]*"/, `version "${version}"`)
+    .replace(/sha256 "[^"]*"/, `sha256 "${sha256}"`);
 
   fs.writeFileSync(formulaPath, updatedFormulaContent);
   console.log(`SUCCESS: Formula updated to ${url}`);
