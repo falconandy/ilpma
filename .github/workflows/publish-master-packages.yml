@@ -72,33 +72,35 @@ jobs:
         run: |
           yarn oclif-dev pack
 
-      - name: Publish pre-release artifactes
-        uses: marvinpinto/action-automatic-releases@latest
+      - name: Publish pre-release artifactes to Homebrew
+        uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "Development Build"
-          automatic_release_tag: "latest"
+          repo_name: falconandy/homebrew-ilpma
+          repo_token: "${{ secrets.HOMEBREW_PUBLISH_TOKEN }}"
+          file: dist/**/*.tar.gz
+          file_glob: true
+          release_name: "Development Build"
+          tag: "latest"
           prerelease: true
-          files: |
-            dist/**/*.tar.gz
+          overwrite: true
 
-      - name: Checkout homebrew-ilpma
-        uses: actions/checkout@v2
-        with:
-          repository: falconandy/homebrew-ilpma
-          path: homebrew-ilpma
-          ssh-key: ${{ secrets.HOMEBREW_ILPMA_DEPLOY_KEY }}
-
-      - name: Update Brew formula
-        run: |
-          npx ts-node ./buildtools/updateBrewFormula.ts --dist ./dist --version ${{ steps.package-version.outputs.current-version }} --formula ./homebrew-ilpma/Formula/ilpma-dev.rb
-
-      - name: Commit Brew formula
-        run: |
-          cd ./homebrew-ilpma
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit -a -m "v${{ steps.package-version.outputs.current-version }}"
-          git tag "v${{ steps.package-version.outputs.current-version }}"
-          git push
-          git push --tags
+#      - name: Checkout homebrew-ilpma
+#        uses: actions/checkout@v2
+#        with:
+#          repository: falconandy/homebrew-ilpma
+#          path: homebrew-ilpma
+#          ssh-key: ${{ secrets.HOMEBREW_ILPMA_DEPLOY_KEY }}
+#
+#      - name: Update Brew formula
+#        run: |
+#          npx ts-node ./buildtools/updateBrewFormula.ts --dist ./dist --version ${{ steps.package-version.outputs.current-version }} --formula ./homebrew-ilpma/Formula/ilpma-dev.rb
+#
+#      - name: Commit Brew formula
+#        run: |
+#          cd ./homebrew-ilpma
+#          git config user.name "$GITHUB_ACTOR"
+#          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+#          git commit -a -m "v${{ steps.package-version.outputs.current-version }}"
+#          git tag "v${{ steps.package-version.outputs.current-version }}"
+#          git push
+#          git push --tags
