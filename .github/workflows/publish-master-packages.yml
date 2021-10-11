@@ -72,7 +72,7 @@ jobs:
         run: |
           yarn oclif-dev pack
 
-      - name: Publish pre-release artifactes to Homebrew
+      - name: Publish pre-release assets to Homebrew
         uses: svenstaro/upload-release-action@v2
         with:
           repo_name: falconandy/homebrew-ilpma
@@ -84,23 +84,23 @@ jobs:
           prerelease: true
           overwrite: true
 
-#      - name: Checkout homebrew-ilpma
-#        uses: actions/checkout@v2
-#        with:
-#          repository: falconandy/homebrew-ilpma
-#          path: homebrew-ilpma
-#          ssh-key: ${{ secrets.HOMEBREW_ILPMA_DEPLOY_KEY }}
-#
-#      - name: Update Brew formula
-#        run: |
-#          npx ts-node ./buildtools/updateBrewFormula.ts --dist ./dist --version ${{ steps.package-version.outputs.current-version }} --formula ./homebrew-ilpma/Formula/ilpma-dev.rb
-#
-#      - name: Commit Brew formula
-#        run: |
-#          cd ./homebrew-ilpma
-#          git config user.name "$GITHUB_ACTOR"
-#          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-#          git commit -a -m "v${{ steps.package-version.outputs.current-version }}"
-#          git tag "v${{ steps.package-version.outputs.current-version }}"
-#          git push
-#          git push --tags
+      - name: Checkout homebrew-ilpma
+        uses: actions/checkout@v2
+        with:
+          repository: falconandy/homebrew-ilpma
+          path: homebrew-ilpma
+          ssh-key: ${{ secrets.HOMEBREW_ILPMA_DEPLOY_KEY }}
+
+      - name: Update Brew formula
+        run: |
+          npx ts-node ./buildtools/updateBrewFormula.ts --dist ./dist --version ${{ steps.package-version.outputs.current-version }} --formula ./homebrew-ilpma/Formula/ilpma-dev.rb
+
+      - name: Commit Brew formula
+        run: |
+          cd ./homebrew-ilpma
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git commit -a -m "v${{ steps.package-version.outputs.current-version }}"
+          git tag "v${{ steps.package-version.outputs.current-version }}"
+          git push
+          git push --tags

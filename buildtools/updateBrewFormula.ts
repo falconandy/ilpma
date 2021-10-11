@@ -20,9 +20,9 @@ glob(distDir + `/**/ilpma-v${version}.tar.gz`, (_, files) => {
 
   let url: string;
   if (version.indexOf('-master-') > 0) {
-    url = `https://github.com/falconandy/ilpma/releases/download/latest/ilpma-v${version}.tar.gz`;
+    url = `https://github.com/falconandy/homebrew-ilpma/releases/download/latest/ilpma-v${version}.tar.gz`;
   } else {
-    url = `https://github.com/falconandy/ilpma/releases/download/v${version}/ilpma-v${version}.tar.gz`;
+    url = `https://github.com/falconandy/homebrew-ilpma/releases/download/v${version}/ilpma-v${version}.tar.gz`;
   }
 
   const formulaContent = fs.readFileSync(formulaPath, 'utf-8');
