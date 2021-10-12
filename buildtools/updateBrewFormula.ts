@@ -18,12 +18,7 @@ glob(distDir + `/**/ilpma-v${version}.tar.gz`, (_, files) => {
   hashSum.update(packageContent);
   const sha256 = hashSum.digest('hex');
 
-  let url: string;
-  if (version.indexOf('-master-') > 0) {
-    url = `https://github.com/falconandy/homebrew-ilpma/releases/download/latest/ilpma-v${version}.tar.gz`;
-  } else {
-    url = `https://github.com/falconandy/homebrew-ilpma/releases/download/v${version}/ilpma-v${version}.tar.gz`;
-  }
+  const url = `https://github.com/falconandy/homebrew-ilpma/releases/download/v${version}/ilpma-v${version}.tar.gz`;
 
   const formulaContent = fs.readFileSync(formulaPath, 'utf-8');
   const updatedFormulaContent = formulaContent

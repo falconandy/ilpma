@@ -100,7 +100,7 @@ jobs:
           repo_token: "${{ secrets.HOMEBREW_PUBLISH_TOKEN }}"
           file: dist/**/*.tar.gz
           file_glob: true
-          release_name: "Development Build"
-          tag: "latest"
+          release_name: "v${{ steps.package-version.outputs.current-version }}"
+          tag: "v${{ steps.package-version.outputs.current-version }}"
           prerelease: true
           overwrite: true
